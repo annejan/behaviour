@@ -189,7 +189,7 @@ def main():
         rt = 'P' if i == 0 else 'I'
         restag = (f"        .byte '{rt}', $0c, $0e    // resident lyric engine\n"
                   f"        .byte '{rt}', $2a, $3f    // resident sprite shapes + onsets\n"
-                  f"        .byte '{rt}', $c0, $c7    // resident sprite-shape overflow\n")
+                  f"        .byte '{rt}', $c0, $cf    // resident sprite-shape overflow\n")
         sb = (0x48, 0x49) if i % 2 == 0 else (0x88, 0x89)
         sprtag = f"        .byte 'P', ${sb[0]:02x}, ${sb[1]:02x}    // sprite shape block\n"
         efo = EFO.format(nn=nn, callmusic=callmusic,
