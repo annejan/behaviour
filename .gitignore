@@ -1,0 +1,13 @@
+# Copyrighted source video (42MB) — not redistributable
+*.webm
+# Intermediate extracted frames (regenerable via tools/build_frames.sh)
+frames/
+# Build artifacts
+out/*.prg
+out/*.sym
+out/*.d64
+out/*.pef
+out/*.efo
+out/*.bin
+*.shot.png
+__pycache__/
