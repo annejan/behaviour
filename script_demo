@@ -1,0 +1,19 @@
+# Björk Human Behaviour koala slideshow — pefchain script
+# Each image holds dur_frames (interrupt drains 16-bit timer -> $04=1),
+# then advances. Last image stays. SID resident via --music.
+parts_pef/p00.pef		04 = 01
+parts_pef/p01.pef		04 = 01
+parts_pef/p02.pef		04 = 01
+parts_pef/p03.pef		04 = 01
+parts_pef/p04.pef		04 = 01
+parts_pef/p05.pef		04 = 01
+parts_pef/p06.pef		04 = 01
+parts_pef/p07.pef		04 = 01
+parts_pef/p08.pef		04 = 01
+parts_pef/p09.pef		04 = 01
+parts_pef/p10.pef		04 = 01
+parts_pef/p11.pef		04 = 01
+parts_pef/p12.pef		04 = 01
+parts_pef/p13.pef		04 = 01
+parts_pef/p14.pef		04 = 01
+parts_pef/p15.pef		stay
