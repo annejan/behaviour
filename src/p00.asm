@@ -13,6 +13,7 @@
 setup:
         lda #0
         jsr $1000              // INIT song 0 (part 0 only)
+        jsr $0c03              // lyric: clear sprite blocks + zero clock
         lda #$3d
         sta $dd02              // VIC bank 1 (Spindle owns $dd00; set bank via DDR $dd02)
         lda #$08
@@ -27,6 +28,9 @@ setup:
         sta $d021
         lda #0
         sta $d020
+        lda #0
+        sta $0f
+        jsr $0c09              // lyric: set sprite regs + pointers for this bank
         ldx #0
 copycol:
         lda COLDAT,x
@@ -45,6 +49,7 @@ copycol:
         sta T_HI
         lda #0
         sta FLAG
+        jsr $0c06              // lyric: blit current line into this (freshly-flipped) bank
         rts
 
 interrupt:
@@ -57,7 +62,7 @@ interrupt:
         pha
         tya
         pha
-        jsr $1003               // PLAY (part 0 drives music itself)
+        jsr $0c00               // wrapper: SID play + lyric tick
         // countdown (A clobbered, X/Y preserved on stack)
         lda FLAG
         bne cdone

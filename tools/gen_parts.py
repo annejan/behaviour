@@ -72,6 +72,9 @@ setup:
         sta $d021
         lda #0
         sta $d020
+        lda #{sprbank}
+        sta $0f
+        jsr $0c09              // lyric: set sprite regs + pointers for this bank
         ldx #0
 copycol:
         lda COLDAT,x
@@ -90,6 +93,7 @@ copycol:
         sta T_HI
         lda #0
         sta FLAG
+        jsr $0c06              // lyric: blit current line into this (freshly-flipped) bank
         rts
 
 interrupt:
@@ -131,8 +135,9 @@ cdone:
         rti
 """
 
-# music block: part0 calls PLAY directly; later parts use a patched placeholder
-MUSIC_PART0 = "        jsr $1003               // PLAY (part 0 drives music itself)"
+# music block: part0 calls the resident lyric+music wrapper ($0c00) directly;
+# later parts use a patched placeholder (pefchain patches -> jsr $0c00 via 'M').
+MUSIC_PART0 = "        jsr $0c00               // wrapper: SID play + lyric tick"
 # MUST be exactly 3 bytes: pefchain overwrites the callmusic slot with a
 # 3-byte `jsr PLAY`. `bit $0000` would be optimised to a 2-byte zero-page
 # BIT by KickAss, so the patch would clobber the next instruction (JAM).
@@ -154,7 +159,7 @@ EFO = """// p{nn}_efo.asm — EFO2 header (built -binfile, cat before p{nn}.prg)
         .byte 'P', ${pc_lo:02x}, ${pc_hi:02x}    // code page(s)
         .byte 'P', ${p1a:02x}, ${p1b:02x}    // screen + colour stage
         .byte 'P', ${p2a:02x}, ${p2b:02x}    // bitmap
-{mtag}        .byte $00
+{sprtag}{restag}{mtag}        .byte $00
 """
 
 def main():
@@ -168,20 +173,29 @@ def main():
         bankname = "1" if i % 2 == 0 else "2"
         music = MUSIC_PART0 if i == 0 else MUSIC_LATER
         hold = max(2, SEGS[i]['dur_frames'])
+        sprbank = 0 if i % 2 == 0 else 1
         init = ("        lda #0\n        jsr $1000              // INIT song 0 (part 0 only)\n"
+                "        jsr $0c03              // lyric: clear sprite blocks + zero clock\n"
                 if i == 0 else "")
         code = CODE.format(nn=nn, i=i, kla=klas[i], bankname=bankname,
                            screen=bp['screen'], color=bp['color'],
                            bitmap=bp['bitmap'], bg=bg, hold=hold, code=bp['code'],
-                           dd02=bp['dd02'], init=init, music=music)
+                           dd02=bp['dd02'], init=init, music=music, sprbank=sprbank)
         open(os.path.join(src, f"p{nn}.asm"), 'w').write(code)
 
         callmusic = "$0000" if i == 0 else "call_play"
-        mtag = "        .byte 'M', $03, $10    // install PLAY=$1003\n" if i == 0 else ""
+        mtag = "        .byte 'M', $00, $0c    // install wrapper PLAY=$0c00\n" if i == 0 else ""
+        # resident lyric engine + sprite data: part0 establishes ('P'), others inherit ('I')
+        rt = 'P' if i == 0 else 'I'
+        restag = (f"        .byte '{rt}', $0c, $0d    // resident lyric engine\n"
+                  f"        .byte '{rt}', $2a, $3f    // resident sprite shapes + onsets\n")
+        sb = (0x48, 0x49) if i % 2 == 0 else (0x88, 0x89)
+        sprtag = f"        .byte 'P', ${sb[0]:02x}, ${sb[1]:02x}    // sprite shape block\n"
         efo = EFO.format(nn=nn, callmusic=callmusic,
                          pc_lo=bp['cpage'], pc_hi=bp['cpage'],
                          p1a=bp['p1'][0], p1b=bp['p1'][1],
-                         p2a=bp['p2'][0], p2b=bp['p2'][1], mtag=mtag)
+                         p2a=bp['p2'][0], p2b=bp['p2'][1], mtag=mtag,
+                         restag=restag, sprtag=sprtag)
         open(os.path.join(src, f"p{nn}_efo.asm"), 'w').write(efo)
 
     # pefchain script
@@ -204,6 +218,11 @@ def main():
           'SB=/home/annejan/Projects/x2026/spindle-3.1/prebuilt-binaries/linux-x86_64',
           'PEFCHAIN="$SB/pefchain"; MKPEF="$SB/mkpef"',
           'mkdir -p parts_pef out',
+          '# resident lyric engine + precomputed sprite shapes',
+          'python3 tools/lyric_assets.py >/dev/null || { echo "lyric_assets FAIL"; exit 1; }',
+          'java -jar "$KA" src/lyriceng.asm -o out/lyriceng.prg >/tmp/kae.log 2>&1 \\',
+          '  || { echo "lyriceng build FAIL"; tail -8 /tmp/kae.log; exit 1; }',
+          'tail -c +3 out/lyriceng.prg > out/lyriceng.bin',
           'for nn in ' + " ".join(f"{i:02d}" for i in range(N)) + '; do',
           '  ( cd src',
           '    java -jar "$KA" p$nn.asm -o p$nn.prg -symbolfile >/tmp/ka.log 2>&1 \\',
@@ -220,7 +239,9 @@ def main():
         data = (f"koala/img{nn}.kla,{bm:x},2,1f40 "
                 f"koala/img{nn}.kla,{sc:x},1f42,3e8 "
                 f"koala/img{nn}.kla,{co:x},232a,3e8")
-        music = ' --music human_behaviour.sid,,7c' if i == 0 else ''
+        # resident chunk: SID + lyric engine + precomputed sprite shapes + onsets
+        music = (' --music human_behaviour.sid,,7c out/lyriceng.bin,0c00'
+                 ' out/lyric_spr.bin,2a00 out/lyric_onset.bin,3f00') if i == 0 else ''
         bl.append(f'"$MKPEF" -o parts_pef/p{nn}.pef src/p{nn}.efo {data}{music}')
     bl += [
         'echo ">>> linking with pefchain"',

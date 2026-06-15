@@ -13,4 +13,7 @@
         .byte 'P', $08, $08    // code page(s)
         .byte 'P', $40, $47    // screen + colour stage
         .byte 'P', $60, $7f    // bitmap
+        .byte 'P', $48, $49    // sprite shape block
+        .byte 'I', $0c, $0d    // resident lyric engine
+        .byte 'I', $2a, $3f    // resident sprite shapes + onsets
         .byte $00

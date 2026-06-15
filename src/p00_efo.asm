@@ -13,5 +13,8 @@
         .byte 'P', $08, $08    // code page(s)
         .byte 'P', $40, $47    // screen + colour stage
         .byte 'P', $60, $7f    // bitmap
-        .byte 'M', $03, $10    // install PLAY=$1003
+        .byte 'P', $48, $49    // sprite shape block
+        .byte 'P', $0c, $0d    // resident lyric engine
+        .byte 'P', $2a, $3f    // resident sprite shapes + onsets
+        .byte 'M', $00, $0c    // install wrapper PLAY=$0c00
         .byte $00

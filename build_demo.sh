@@ -6,6 +6,11 @@ KA=/home/annejan/Projects/x2026/kickass/KickAss.jar
 SB=/home/annejan/Projects/x2026/spindle-3.1/prebuilt-binaries/linux-x86_64
 PEFCHAIN="$SB/pefchain"; MKPEF="$SB/mkpef"
 mkdir -p parts_pef out
+# resident lyric engine + precomputed sprite shapes
+python3 tools/lyric_assets.py >/dev/null || { echo "lyric_assets FAIL"; exit 1; }
+java -jar "$KA" src/lyriceng.asm -o out/lyriceng.prg >/tmp/kae.log 2>&1 \
+  || { echo "lyriceng build FAIL"; tail -8 /tmp/kae.log; exit 1; }
+tail -c +3 out/lyriceng.prg > out/lyriceng.bin
 for nn in 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22; do
   ( cd src
     java -jar "$KA" p$nn.asm -o p$nn.prg -symbolfile >/tmp/ka.log 2>&1 \
@@ -14,7 +19,7 @@ for nn in 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22; 
       || { echo "EFO p$nn FAIL"; tail -8 /tmp/ka2.log; exit 1; }
     cat p${nn}_efo.bin p$nn.prg > p$nn.efo )
 done
-"$MKPEF" -o parts_pef/p00.pef src/p00.efo koala/img00.kla,6000,2,1f40 koala/img00.kla,4000,1f42,3e8 koala/img00.kla,4400,232a,3e8 --music human_behaviour.sid,,7c
+"$MKPEF" -o parts_pef/p00.pef src/p00.efo koala/img00.kla,6000,2,1f40 koala/img00.kla,4000,1f42,3e8 koala/img00.kla,4400,232a,3e8 --music human_behaviour.sid,,7c out/lyriceng.bin,0c00 out/lyric_spr.bin,2a00 out/lyric_onset.bin,3f00
 "$MKPEF" -o parts_pef/p01.pef src/p01.efo koala/img01.kla,a000,2,1f40 koala/img01.kla,8000,1f42,3e8 koala/img01.kla,8400,232a,3e8
 "$MKPEF" -o parts_pef/p02.pef src/p02.efo koala/img02.kla,6000,2,1f40 koala/img02.kla,4000,1f42,3e8 koala/img02.kla,4400,232a,3e8
 "$MKPEF" -o parts_pef/p03.pef src/p03.efo koala/img03.kla,a000,2,1f40 koala/img03.kla,8000,1f42,3e8 koala/img03.kla,8400,232a,3e8

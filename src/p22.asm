@@ -25,6 +25,9 @@ setup:
         sta $d021
         lda #0
         sta $d020
+        lda #0
+        sta $0f
+        jsr $0c09              // lyric: set sprite regs + pointers for this bank
         ldx #0
 copycol:
         lda COLDAT,x
@@ -43,6 +46,7 @@ copycol:
         sta T_HI
         lda #0
         sta FLAG
+        jsr $0c06              // lyric: blit current line into this (freshly-flipped) bank
         rts
 
 interrupt:
