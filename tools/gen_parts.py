@@ -187,7 +187,7 @@ def main():
         mtag = "        .byte 'M', $00, $0c    // install wrapper PLAY=$0c00\n" if i == 0 else ""
         # resident lyric engine + sprite data: part0 establishes ('P'), others inherit ('I')
         rt = 'P' if i == 0 else 'I'
-        restag = (f"        .byte '{rt}', $0c, $0d    // resident lyric engine\n"
+        restag = (f"        .byte '{rt}', $0c, $0e    // resident lyric engine\n"
                   f"        .byte '{rt}', $2a, $3f    // resident sprite shapes + onsets\n")
         sb = (0x48, 0x49) if i % 2 == 0 else (0x88, 0x89)
         sprtag = f"        .byte 'P', ${sb[0]:02x}, ${sb[1]:02x}    // sprite shape block\n"

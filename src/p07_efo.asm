@@ -14,6 +14,6 @@
         .byte 'P', $80, $87    // screen + colour stage
         .byte 'P', $a0, $bf    // bitmap
         .byte 'P', $88, $89    // sprite shape block
-        .byte 'I', $0c, $0d    // resident lyric engine
+        .byte 'I', $0c, $0e    // resident lyric engine
         .byte 'I', $2a, $3f    // resident sprite shapes + onsets
         .byte $00

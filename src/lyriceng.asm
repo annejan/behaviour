@@ -24,6 +24,8 @@
 .const DST1 = $0b             // $0b/$0c
 .const DST2 = $0d             // $0d/$0e
 .const BANKF = $0f            // bank flag for setup_sprites
+.const ANIM = $10             // sine/colour animation phase
+.const SLIDE = $11            // slide-in offset (44 -> 0 on each new line)
 
 * = $0c00 "lyriceng"
         jmp lyric_play
@@ -57,10 +59,13 @@ adv_inc:
 adv_done:
         lda CURSOR
         cmp LASTLINE
-        beq lp_done
+        beq lp_anim
         sta LASTLINE
         jsr show_line
-lp_done:
+        lda #44
+        sta SLIDE              // trigger slide-in for the new line
+lp_anim:
+        jsr animate
         rts
 
 init_lyric:
@@ -77,8 +82,64 @@ ic:
         sta FRAME
         sta FRAME+1
         sta CURSOR
+        sta ANIM
+        sta SLIDE
         lda #$ff
         sta LASTLINE
+        rts
+
+// per-frame: sine bob + slide-in (Y only) + colour shimmer. X is fixed (setup).
+animate:
+        inc ANIM
+        lda SLIDE
+        beq an_y
+        sec
+        sbc #3
+        bcs an_sl
+        lda #0
+an_sl:
+        sta SLIDE
+an_y:
+        ldx #0
+an_yl:
+        txa
+        asl
+        asl
+        asl                    // s*8
+        clc
+        adc ANIM
+        tay
+        lda sinetab,y          // 0..8
+        clc
+        adc #200               // baseY
+        clc
+        adc SLIDE              // + slide-in offset
+        pha
+        txa
+        asl
+        tay                    // y = s*2
+        pla
+        sta $d001,y            // sprite s Y
+        inx
+        cpx #8
+        bne an_yl
+        // colour shimmer: rotating bright palette across the 8 sprites
+        lda ANIM
+        lsr
+        lsr
+        and #3
+        tax
+        ldy #0
+an_cl:
+        lda colpal,x
+        sta $d027,y
+        inx
+        txa
+        and #3
+        tax
+        iny
+        cpy #8
+        bne an_cl
         rts
 
 // copy line CURSOR's shapes (8 sprites x 24 bytes) into both bank blocks,
@@ -192,3 +253,6 @@ ss_p2:
         rts
 
 sprx:   .byte 84,108,132,156,180,204,228,252
+colpal: .byte 1,7,3,13                 // white, yellow, cyan, lt-green (bright/readable)
+sinetab:
+        .fill 256, round(4 + 4*sin(toRadians(i*360/256)))
