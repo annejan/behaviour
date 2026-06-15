@@ -56,7 +56,7 @@ interrupt:
         tya
         pha
 call_play:
-        bit $0000              // pefchain patches -> jsr PLAY
+        .byte $2c, $00, $00    // BIT $0000 placeholder; pefchain patches -> jsr PLAY
         // countdown (A clobbered, X/Y preserved on stack)
         lda FLAG
         bne cdone

@@ -133,7 +133,11 @@ cdone:
 
 # music block: part0 calls PLAY directly; later parts use a patched placeholder
 MUSIC_PART0 = "        jsr $1003               // PLAY (part 0 drives music itself)"
-MUSIC_LATER = "call_play:\n        bit $0000              // pefchain patches -> jsr PLAY"
+# MUST be exactly 3 bytes: pefchain overwrites the callmusic slot with a
+# 3-byte `jsr PLAY`. `bit $0000` would be optimised to a 2-byte zero-page
+# BIT by KickAss, so the patch would clobber the next instruction (JAM).
+# Emit the absolute-BIT opcode explicitly to lock the size at 3.
+MUSIC_LATER = "call_play:\n        .byte $2c, $00, $00    // BIT $0000 placeholder; pefchain patches -> jsr PLAY"
 
 EFO = """// p{nn}_efo.asm — EFO2 header (built -binfile, cat before p{nn}.prg).
 .import source "p{nn}.sym"
