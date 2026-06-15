@@ -16,4 +16,5 @@
         .byte 'P', $48, $49    // sprite shape block
         .byte 'I', $0c, $0e    // resident lyric engine
         .byte 'I', $2a, $3f    // resident sprite shapes + onsets
+        .byte 'I', $c0, $c7    // resident sprite-shape overflow
         .byte $00

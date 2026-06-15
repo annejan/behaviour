@@ -188,7 +188,8 @@ def main():
         # resident lyric engine + sprite data: part0 establishes ('P'), others inherit ('I')
         rt = 'P' if i == 0 else 'I'
         restag = (f"        .byte '{rt}', $0c, $0e    // resident lyric engine\n"
-                  f"        .byte '{rt}', $2a, $3f    // resident sprite shapes + onsets\n")
+                  f"        .byte '{rt}', $2a, $3f    // resident sprite shapes + onsets\n"
+                  f"        .byte '{rt}', $c0, $c7    // resident sprite-shape overflow\n")
         sb = (0x48, 0x49) if i % 2 == 0 else (0x88, 0x89)
         sprtag = f"        .byte 'P', ${sb[0]:02x}, ${sb[1]:02x}    // sprite shape block\n"
         efo = EFO.format(nn=nn, callmusic=callmusic,
@@ -241,9 +242,11 @@ def main():
         data = (f"koala/img{nn}.kla,{bm:x},2,1f40 "
                 f"koala/img{nn}.kla,{sc:x},1f42,3e8 "
                 f"koala/img{nn}.kla,{co:x},232a,3e8")
-        # resident chunk: SID + lyric engine + precomputed sprite shapes + onsets
+        # resident chunk: SID + lyric engine + precomputed sprite shapes
+        # (lines 0-27 at $2a00, overflow 28+ at $c000) + onset table.
         music = (' --music human_behaviour.sid,,7c out/lyriceng.bin,0c00'
-                 ' out/lyric_spr.bin,2a00 out/lyric_onset.bin,3f00') if i == 0 else ''
+                 ' out/lyric_spr.bin,2a00,0,1500 out/lyric_spr.bin,c000,1500'
+                 ' out/lyric_onset.bin,3f00') if i == 0 else ''
         bl.append(f'"$MKPEF" -o parts_pef/p{nn}.pef src/p{nn}.efo {data}{music}')
     bl += [
         'echo ">>> linking with pefchain"',

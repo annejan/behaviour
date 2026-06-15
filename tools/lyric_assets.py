@@ -43,6 +43,7 @@ def main():
         fr=int(round(t*50)); onset+=bytes([fr&0xff,(fr>>8)&0xff])
     open('out/lyric_spr.bin','wb').write(spr)
     open('out/lyric_onset.bin','wb').write(onset)
+    open('src/lyric_n.asm','w').write(f".const LYRIC_NLINES = {len(d)}\n")
     print(f"NLINES={len(d)} spr={len(spr)}B onset={len(onset)}B (C64 chargen 8px)")
 
     # preview: unpack a few lines' shapes (rows 0-7) back to pixels

@@ -1,5 +1,5 @@
 {
- "comment": "auto from Human Behaviour.lrc, mapped to SID timeline",
+ "comment": "full interpreted lyrics, LRC->SID timeline",
  "lines": [
   [
    0.0,
@@ -23,7 +23,7 @@
   ],
   [
    29.2,
-   ""
+   "ME AND MY HEREAFTER"
   ],
   [
    35.1,
@@ -38,8 +38,20 @@
    "BUT YET SO IRRESISTIBLE"
   ],
   [
+   49.7,
+   "ME AND MY FEAR CANNOT"
+  ],
+  [
    56.8,
    "AND THERE IS NO MAP"
+  ],
+  [
+   59.4,
+   "UNCERTAIN"
+  ],
+  [
+   67.9,
+   ""
   ],
   [
    75.2,
@@ -58,8 +70,12 @@
    "TURN HAPPY"
   ],
   [
+   90.3,
+   "THEY AND MY HEREAFTER"
+  ],
+  [
    95.9,
-   "TO GET INVOLVED IN"
+   "TO GET INVOLVED IN THE"
   ],
   [
    100.9,
@@ -70,8 +86,20 @@
    "IS EVER SO SATISFYING"
   ],
   [
+   111.1,
+   "THEY AND MY HERO"
+  ],
+  [
    118.1,
-   "AND THERE IS NO"
+   "AND THERE IS NO MAP"
+  ],
+  [
+   120.7,
+   "UNCERTAIN"
+  ],
+  [
+   129.6,
+   ""
   ],
   [
    149.0,
@@ -90,7 +118,11 @@
    "HELP AT ALL"
   ],
   [
-   191.5,
+   181.1,
+   "UNCERTAIN"
+  ],
+  [
+   191.1,
    "HUMAN BEHAVIOUR"
   ],
   [
@@ -100,6 +132,10 @@
   [
    213.9,
    "HUMAN HUMAN HUMAN"
+  ],
+  [
+   228.0,
+   ""
   ],
   [
    269.7,
