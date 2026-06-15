@@ -94,6 +94,8 @@ def main():
     ap.add_argument('--n',type=int,default=16)
     ap.add_argument('--min-sec',type=float,default=7.0)
     ap.add_argument('--kernel',type=float,default=6.0)
+    ap.add_argument('--target',type=float,default=14.0,help='target sub-shot length')
+    ap.add_argument('--max-split',type=float,default=22.0,help='split sections longer than this')
     ap.add_argument('--out',default='segments.json')
     a=ap.parse_args()
 
@@ -130,10 +132,22 @@ def main():
 
     starts=[0.0]+bounds
     ends=bounds+[a.song_len]
+    # --- pacing: subdivide long sections into beat-aligned sub-shots so the
+    # cadence stays even (~TARGET s) instead of jumping 6s->54s. Cuts still
+    # land on beats; long steady sections just get >1 image. ---
+    snapb=lambda t:phase+round((t-phase)/beat)*beat
+    raw=[]
+    for s,e in zip(starts,ends):
+        dur=e-s
+        n = max(1, round(dur/a.target)) if dur>a.max_split else 1
+        if n==1:
+            raw.append((s,e)); continue
+        pts=[s]+[snapb(s+i*dur/n) for i in range(1,n)]+[e]
+        pts=sorted(set(round(p,3) for p in pts))
+        for i in range(len(pts)-1):
+            raw.append((pts[i],pts[i+1]))
     segs=[]
-    for k,(s,e) in enumerate(zip(starts,ends)):
-        # sample ~30% into the segment (proportional song->video map), so the
-        # frame represents the section and never lands on a blank cut-boundary
+    for k,(s,e) in enumerate(raw):
         sample = s + 0.30*(e-s)
         vt = min(a.video_len-1, max(1.0, sample/a.song_len*a.video_len))
         segs.append(dict(idx=k, start=round(s,3), end=round(e,3),

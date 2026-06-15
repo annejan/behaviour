@@ -6,7 +6,7 @@ KA=/home/annejan/Projects/x2026/kickass/KickAss.jar
 SB=/home/annejan/Projects/x2026/spindle-3.1/prebuilt-binaries/linux-x86_64
 PEFCHAIN="$SB/pefchain"; MKPEF="$SB/mkpef"
 mkdir -p parts_pef out
-for nn in 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15; do
+for nn in 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22; do
   ( cd src
     java -jar "$KA" p$nn.asm -o p$nn.prg -symbolfile >/tmp/ka.log 2>&1 \
       || { echo "KA p$nn FAIL"; tail -8 /tmp/ka.log; exit 1; }
@@ -30,6 +30,13 @@ done
 "$MKPEF" -o parts_pef/p13.pef src/p13.efo koala/img13.kla,a000,2,1f40 koala/img13.kla,8000,1f42,3e8 koala/img13.kla,8400,232a,3e8
 "$MKPEF" -o parts_pef/p14.pef src/p14.efo koala/img14.kla,6000,2,1f40 koala/img14.kla,4000,1f42,3e8 koala/img14.kla,4400,232a,3e8
 "$MKPEF" -o parts_pef/p15.pef src/p15.efo koala/img15.kla,a000,2,1f40 koala/img15.kla,8000,1f42,3e8 koala/img15.kla,8400,232a,3e8
+"$MKPEF" -o parts_pef/p16.pef src/p16.efo koala/img16.kla,6000,2,1f40 koala/img16.kla,4000,1f42,3e8 koala/img16.kla,4400,232a,3e8
+"$MKPEF" -o parts_pef/p17.pef src/p17.efo koala/img17.kla,a000,2,1f40 koala/img17.kla,8000,1f42,3e8 koala/img17.kla,8400,232a,3e8
+"$MKPEF" -o parts_pef/p18.pef src/p18.efo koala/img18.kla,6000,2,1f40 koala/img18.kla,4000,1f42,3e8 koala/img18.kla,4400,232a,3e8
+"$MKPEF" -o parts_pef/p19.pef src/p19.efo koala/img19.kla,a000,2,1f40 koala/img19.kla,8000,1f42,3e8 koala/img19.kla,8400,232a,3e8
+"$MKPEF" -o parts_pef/p20.pef src/p20.efo koala/img20.kla,6000,2,1f40 koala/img20.kla,4000,1f42,3e8 koala/img20.kla,4400,232a,3e8
+"$MKPEF" -o parts_pef/p21.pef src/p21.efo koala/img21.kla,a000,2,1f40 koala/img21.kla,8000,1f42,3e8 koala/img21.kla,8400,232a,3e8
+"$MKPEF" -o parts_pef/p22.pef src/p22.efo koala/img22.kla,6000,2,1f40 koala/img22.kla,4000,1f42,3e8 koala/img22.kla,4400,232a,3e8
 echo ">>> linking with pefchain"
 "$PEFCHAIN" -v --title "human/bjork" --disk-id "HB" -o out/human.d64 script_demo
 ls -l out/human.d64
