@@ -1,31 +1,117 @@
-{ "comment": "User's lyric set; lines >24 split into timed halves. 8px C64 font.",
-  "lines": [
-  [0.0,   ""],
-  [12.1, "IF YOU EVER GET CLOSE"],
-  [15.0, "TO A HUMAN"],
-  [17.3, "AND HUMAN BEHAVIOUR"],
-  [21.5, "BE READY TO GET CONFUSED"],
-  [27.5, ""],
-  [37.5, "THERE'S DEFINITELY"],
-  [40.5, "NO LOGIC"],
-  [48.1, "TO HUMAN BEHAVIOUR"],
-  [55.6, "BUT YET SO IRRISTIBLE"],
-  [61.3, "THERE'S NO MAP"],
-  [64.5, "TO HUMAN BEHAVIOUR"],
-  [74.2, "THEY'RE TERRIBLY MOODY"],
-  [89.3, "THEN ALL OF A SUDDEN"],
-  [92.5, "TURN HAPPY"],
-  [99.5, "BUT TO GET INVOLVED"],
-  [103.0, "IN THE EXCHANGE"],
-  [106.0, "OF HUMAN EMOTIONS"],
-  [110.0, "IS EVER SO SATISFYING"],
-  [117.2, "THERE'S NO MAP"],
-  [122.3, ""],
-  [143.8, "HUMAN BEHAVIOUR"],
-  [168.5, "AND A COMPASS"],
-  [173.6, "WOULDN'T HELP AT ALL"],
-  [179.4, "HUMAN BEHAVIOUR"],
-  [220.8, ""],
-  [264.2, "HUMAN BEHAVIOUR"],
-  [294.0, ""]
-] }
+{
+ "comment": "auto from Human Behaviour.lrc, mapped to SID timeline",
+ "lines": [
+  [
+   0.0,
+   ""
+  ],
+  [
+   12.1,
+   "IF YOU EVER GET CLOSE TO"
+  ],
+  [
+   14.7,
+   "A HUMAN"
+  ],
+  [
+   18.9,
+   "AND HUMAN BEHAVIOUR"
+  ],
+  [
+   24.6,
+   "BE READY TO GET CONFUSED"
+  ],
+  [
+   29.2,
+   ""
+  ],
+  [
+   35.1,
+   "DEFINITELY NO LOGIC"
+  ],
+  [
+   39.4,
+   "TO HUMAN BEHAVIOUR"
+  ],
+  [
+   44.7,
+   "BUT YET SO IRRESISTIBLE"
+  ],
+  [
+   56.8,
+   "AND THERE IS NO MAP"
+  ],
+  [
+   75.2,
+   "THEY'RE TERRIBLY MOODY"
+  ],
+  [
+   80.1,
+   "OF HUMAN BEHAVIOUR"
+  ],
+  [
+   85.7,
+   "THEN ALL OF A SUDDEN"
+  ],
+  [
+   88.3,
+   "TURN HAPPY"
+  ],
+  [
+   95.9,
+   "TO GET INVOLVED IN"
+  ],
+  [
+   100.9,
+   "OF HUMAN EMOTIONS"
+  ],
+  [
+   106.1,
+   "IS EVER SO SATISFYING"
+  ],
+  [
+   118.1,
+   "AND THERE IS NO"
+  ],
+  [
+   149.0,
+   "HUMAN BEHAVIOUR"
+  ],
+  [
+   170.1,
+   "AND THERE IS NO MAP"
+  ],
+  [
+   175.2,
+   "AND A COMPASS WOULDN'T"
+  ],
+  [
+   177.8,
+   "HELP AT ALL"
+  ],
+  [
+   191.5,
+   "HUMAN BEHAVIOUR"
+  ],
+  [
+   208.4,
+   "DEFINITELY NO LOGIC"
+  ],
+  [
+   213.9,
+   "HUMAN HUMAN HUMAN"
+  ],
+  [
+   269.7,
+   "DEFINITELY NO LOGIC"
+  ],
+  [
+   275.5,
+   "HUMAN HUMAN HUMAN HUMAN"
+  ],
+  [
+   294.0,
+   ""
+  ]
+ ]
+}
