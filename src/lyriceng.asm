@@ -209,19 +209,10 @@ an_yl:
         inx
         cpx #8
         bne an_yl
-        // colour fade-in: SLIDE counts frames into the line; ramp the
-        // luminance up through faderamp (black -> bright) over ~8 frames.
-        lda SLIDE
-        cmp #16
-        bcs an_fc
-        inc SLIDE
-an_fc:
-        lda SLIDE
-        lsr
-        cmp #5
-        bcc an_lv
-        lda #4
-an_lv:
+        // colour pulse: dark <-> light <-> dark via the sine on ANIM
+        ldx ANIM
+        lda sinetab,x
+        lsr                    // 0..4
         tax
         lda faderamp,x
         ldx #7
@@ -280,7 +271,7 @@ ss_p2:
         rts
 
 sprx:   .byte 84,108,132,156,180,204,228,252
-faderamp: .byte 0,11,12,15,1           // luminance fade-in: black->dkgrey->grey->ltgrey->white
+faderamp: .byte 6,11,12,14,15           // colour pulse trough(blue)->peak(ltgrey)
 destlo: .fill 24, <(B1 + floor(i/3)*64 + 21 + (i-floor(i/3)*3))
 desthi: .fill 24, >(B1 + floor(i/3)*64 + 21 + (i-floor(i/3)*3))
 sinetab:
