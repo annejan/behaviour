@@ -244,13 +244,13 @@ def main():
                 f"koala/img{nn}.kla,{co:x},232a,3e8")
         # resident chunk: SID + lyric engine + precomputed sprite shapes
         # (lines 0-27 at $2a00, overflow 28+ at $c000) + onset table.
-        music = (' --music human_behaviour.sid,,7c out/lyriceng.bin,0c00'
+        music = (' --music saturday_night.sid,,7c out/lyriceng.bin,0c00'
                  ' out/lyric_spr.bin,2a00,0,1500 out/lyric_spr.bin,c000,1500'
                  ' out/lyric_onset.bin,3f00') if i == 0 else ''
         bl.append(f'"$MKPEF" -o parts_pef/p{nn}.pef src/p{nn}.efo {data}{music}')
     bl += [
         'echo ">>> linking with pefchain"',
-        '"$PEFCHAIN" -v --title "human/bjork" --disk-id "HB" --loop 0 '
+        '"$PEFCHAIN" -v --title "saturday/whig" --disk-id "SN" --loop 0 '
         '-o out/human.d64 script_demo',
         'ls -l out/human.d64']
     p = os.path.join(ROOT, 'build_demo.sh')

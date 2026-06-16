@@ -10,3 +10,4 @@ src/*.bin
 parts_pef/
 out/
 __pycache__/
+cand/

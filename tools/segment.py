@@ -108,7 +108,7 @@ def main():
     nov,nfps = novelty(feat,a.kernel,fps)
     # beat grid from the GoatTracker row math (tempo 8 @50Hz -> 0.16s/row,
     # 4 rows/beat = 0.64s); far more reliable here than audio autocorrelation.
-    bpm,beat,phase = 93.75, 0.64, 0.0
+    bpm,beat,phase = 125.0, 0.48, 0.0
 
     # candidate peaks (local maxima), sorted by strength, min spacing
     mind = a.min_sec
