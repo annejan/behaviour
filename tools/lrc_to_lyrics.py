@@ -12,7 +12,7 @@ placeholder — rescale after the SID lands.
 """
 import re, json, sys
 
-LRC = "Saturday Night.lrc"
+LRC = "saturday_night.lrc"
 # --- timing anchor (FILL IN from final SID) ---
 V0_LRC, S0_SID, RATIO = 0.0, 0.0, 0.8667   # studio 130bpm -> SID 150bpm
 MAXC, MAXLINES = 24, 80

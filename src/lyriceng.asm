@@ -14,8 +14,8 @@
 .import source "lyric_n.asm"          // LYRIC_NLINES, LYRIC_NUNIQ
 .const FONT  = $3100
 .const UNIQ  = $3300
-.const ORDER = $3500
-.const ONSET = $3580
+.const ORDER = $3600
+.const ONSET = $3680
 .const NLINES = LYRIC_NLINES
 .const SID_PLAY = $1003
 .const B1 = $4800

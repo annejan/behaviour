@@ -10,7 +10,7 @@ import numpy as np
 from PIL import Image
 
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__))); os.chdir(ROOT)
-FPS=50; SONG=210.0; NF=int(SONG*FPS)
+FPS=50; SONG=218.0; NF=int(SONG*FPS)
 BORDER=24; W,H=320+2*BORDER, 200+2*BORDER
 AUDIO="saturday_night.mp3"
 
