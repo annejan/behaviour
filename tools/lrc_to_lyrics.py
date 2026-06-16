@@ -14,7 +14,7 @@ import re, json, sys
 
 LRC = "saturday_night.lrc"
 # --- timing anchor (FILL IN from final SID) ---
-V0_LRC, S0_SID, RATIO = 0.0, 0.0, 0.8667   # studio 130bpm -> SID 150bpm
+V0_LRC, S0_SID, RATIO = 0.0, 0.0, 1.0   # LRC already timed to this render
 MAXC, MAXLINES = 24, 80
 
 # long lines -> <=24 readable forms (keep the words; the DA-BA scat shortened)
