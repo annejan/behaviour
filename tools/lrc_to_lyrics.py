@@ -63,6 +63,17 @@ for t,txt in rows:
     ent.append((st,parts[0]))
     if len(parts)>1: ent.append((round(st+1.3,1),parts[1]))
 
+# clear lingering text during instrumental gaps: if a line is followed by a
+# >GAP-second hole, drop a blank ~HOLD s after it so it doesn't linger forever.
+GAP,HOLD=4.0,3.0
+gapped=[]
+for i,(st,txt) in enumerate(ent):
+    gapped.append((st,txt))
+    nxt=ent[i+1][0] if i+1<len(ent) else st+999
+    if txt and nxt-st>GAP:
+        gapped.append((round(min(st+HOLD, nxt-0.3),1),""))
+ent=gapped
+
 # dedup consecutive identical (incl. blanks), keep increasing time
 ded=[]
 for st,txt in ent:

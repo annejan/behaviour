@@ -1,2 +1,2 @@
-.const LYRIC_NLINES = 58
+.const LYRIC_NLINES = 66
 .const LYRIC_NUNIQ = 18
