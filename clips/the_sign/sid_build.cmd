@@ -13,7 +13,7 @@ sidplayfp -w/tmp/sign.wav -t260 renders/the_sign.sid
 ffmpeg -y -t 260 -i /tmp/sign.wav \
   -af "afade=t=in:st=0:d=0.08,afade=t=out:st=258:d=2.0,loudnorm=I=-14:TP=-1.5:LRA=11" \
   -codec:a libmp3lame -b:a 320k renders/the_sign.mp3
-# LRC: MUST force --vocal-channel 1 (the Melody track) — auto-detect picked the
-# wrong channel (ch7 Chords, similar note count) and clustered the timestamps.
+# LRC: auto-detect now picks ch1 'Melody' correctly (scores by lyric-alignment,
+# not just note count) — no --vocal-channel override needed.
 python3 sng_to_lrc.py renders/the_sign.sng "$M" renders/the_sign.lrc \
-  --vocal-channel 1 --title "The Sign" --artist "Ace of Base"
+  --title "The Sign" --artist "Ace of Base"
