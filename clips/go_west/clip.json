@@ -11,7 +11,12 @@
   "video_len": 291.3,
   "render_len": 260.0,
   "ratio": 1.0,
-  "faderamp": [0, 2, 10, 7, 1],
-  "abbr": {},
+  "lrc_offset": -4.5,
+  "keep_parens": true,
+  "faderamp": [0, 6, 6, 14, 14],
+  "faderamp2": [0, 2, 2, 10, 10],
+  "abbr": {
+    "COME ON COME ON COME ON COME ON": "COME ON COME ON COME ON"
+  },
   "build": null
 }

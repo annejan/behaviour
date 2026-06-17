@@ -25,23 +25,29 @@ def sc(ch):
 def codes(txt):
     c=[sc(ch) for ch in txt.upper()[:24]]; return bytes(c+[32]*(24-len(c)))
 
-# per-clip lyric-sprite colour pulse ramp (5 C64 colours, trough->peak).
-# Default = darker (Saturday); brighter clips set "faderamp" in clip.json.
-fade=json.load(open('clip.json')).get('faderamp',[0,6,11,4,12])
-open('src/lyric_fade.asm','w').write(
-    "faderamp: .byte "+",".join(str(int(c)&15) for c in fade)+"\n")
+# per-clip lyric-sprite colour pulse ramps (5 C64 colours each, trough->peak).
+# faderamp = lead vocal; faderamp2 = choir / call-and-response (defaults to same).
+_clip=json.load(open('clip.json'))
+fade =_clip.get('faderamp',[0,6,11,4,12])
+fade2=_clip.get('faderamp2',fade)
+def ramp(name,r): return f"{name}: .byte "+",".join(str(int(c)&15) for c in r)+"\n"
+open('src/lyric_fade.asm','w').write(ramp("faderamp",fade)+ramp("faderamp2",fade2))
 
 d=json.load(open('lyrics.json'))['lines']
-uniq=[]; idx={}; order=bytearray(); onset=bytearray()
-for t,txt in d:
+uniq=[]; idx={}; order=bytearray(); onset=bytearray(); style=bytearray()
+for row in d:
+    t,txt = row[0], row[1]
+    sty   = row[2] if len(row)>2 else 0
     key=txt.upper()[:24]
     if key not in idx: idx[key]=len(uniq); uniq.append(key)
     order.append(idx[key])
     fr=int(round(t*50)); onset+=bytes([fr&0xff,(fr>>8)&0xff])
+    style.append(sty&1)
 uniqbin=b''.join(codes(u) for u in uniq)
 open('out/lyric_font.bin','wb').write(FONT)
 open('out/lyric_uniq.bin','wb').write(uniqbin)
 open('out/lyric_order.bin','wb').write(bytes(order))
 open('out/lyric_onset.bin','wb').write(onset)
+open('out/lyric_style.bin','wb').write(bytes(style))
 open('src/lyric_n.asm','w').write(f".const LYRIC_NLINES = {len(d)}\n.const LYRIC_NUNIQ = {len(uniq)}\n")
-print(f"NLINES={len(d)} NUNIQ={len(uniq)}  font=512 uniq={len(uniqbin)}B order={len(order)}B onset={len(onset)}B")
+print(f"NLINES={len(d)} NUNIQ={len(uniq)} choir={sum(style)}  uniq={len(uniqbin)}B order={len(order)}B onset={len(onset)}B style={len(style)}B")

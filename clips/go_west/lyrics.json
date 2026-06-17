@@ -1,325 +1,610 @@
 {
- "comment": "Saturday Night LRC->SID",
+ "comment": "LRC->SID (lines: [time, text, choir-flag])",
  "lines": [
   [
    0.0,
-   ""
+   "",
+   0
   ],
   [
-   36.5,
-   "COME ON COME ON COME ON"
+   32.0,
+   "COME ON COME ON COME ON",
+   0
   ],
   [
-   37.8,
-   "COME ON"
+   34.1,
+   "TOGETHER",
+   1
   ],
   [
-   38.6,
-   ""
+   35.4,
+   "WE WILL GO OUR WAY",
+   0
   ],
   [
-   39.9,
-   "WE WILL GO OUR WAY"
+   38.2,
+   "TOGETHER",
+   1
   ],
   [
-   42.7,
-   ""
+   39.7,
+   "WE WILL LEAVE SOMEDAY",
+   0
   ],
   [
-   44.2,
-   "WE WILL LEAVE SOMEDAY"
+   42.5,
+   "TOGETHER",
+   1
   ],
   [
-   47.0,
-   ""
+   44.0,
+   "YOUR HAND IN MY HAND",
+   0
   ],
   [
-   48.5,
-   "YOUR HAND IN MY HAND"
+   46.6,
+   "TOGETHER",
+   1
   ],
   [
-   51.1,
-   ""
+   48.4,
+   "WE WILL MAKE OUR PLANS",
+   0
+  ],
+  [
+   51.3,
+   "TOGETHER",
+   1
   ],
   [
    52.9,
-   "WE WILL MAKE OUR PLANS"
+   "WE WILL FLY SO HIGH",
+   0
   ],
   [
-   55.8,
-   ""
+   55.5,
+   "TOGETHER",
+   1
   ],
   [
-   57.4,
-   "WE WILL FLY SO HIGH"
+   57.2,
+   "TELL ALL OUR FRIENDS",
+   0
   ],
   [
-   60.0,
-   ""
+   58.5,
+   "GOOD-BYE",
+   0
   ],
   [
-   61.7,
-   "TELL ALL OUR FRIENDS"
+   59.8,
+   "TOGETHER",
+   1
   ],
   [
-   63.0,
-   "GOOD-BYE"
+   61.5,
+   "WE WILL START LIFE NEW",
+   0
   ],
   [
-   64.3,
-   ""
+   64.4,
+   "TOGETHER",
+   1
   ],
   [
-   66.0,
-   "WE WILL START LIFE NEW"
+   66.1,
+   "THIS IS WHAT WE'LL DO",
+   0
   ],
   [
-   68.9,
-   ""
+   68.3,
+   "GO WEST",
+   1
   ],
   [
-   70.6,
-   "THIS IS WHAT WE'LL DO"
+   70.3,
+   "LIFE IS PEACEFUL THERE",
+   0
+  ],
+  [
+   72.7,
+   "GO WEST",
+   1
   ],
   [
    74.8,
-   "LIFE IS PEACEFUL THERE"
+   "IN THE OPEN AIR",
+   0
   ],
   [
-   79.3,
-   "IN THE OPEN AIR"
+   77.0,
+   "GO WEST",
+   1
   ],
   [
-   83.6,
-   "WHERE THE SKIES ARE BLUE"
+   79.1,
+   "WHERE THE SKIES ARE BLUE",
+   0
   ],
   [
-   87.3,
-   "THIS IS WHAT WE'RE GONNA"
+   81.4,
+   "GO WEST",
+   1
   ],
   [
-   88.6,
-   "DO"
+   82.8,
+   "THIS IS WHAT WE'RE GONNA",
+   0
   ],
   [
-   110.6,
-   "WE WILL LOVE THE BEACH"
+   84.1,
+   "DO",
+   0
   ],
   [
-   115.0,
-   "WE WILL LEARN AND TEACH"
+   87.1,
+   "",
+   0
   ],
   [
-   119.6,
-   "CHANGE OUR PACE OF LIFE"
+   91.8,
+   "GO WEST",
+   1
   ],
   [
-   124.0,
-   "WE WILL WORK AND STRIVE"
+   94.5,
+   "THIS IS WHAT WE'RE GONNA",
+   1
   ],
   [
-   128.4,
-   "I KNOW YOU LOVE ME"
+   95.8,
+   "DO",
+   1
   ],
   [
-   132.7,
-   "HOW COULD I DISAGREE?"
+   99.2,
+   "GO WEST",
+   1
   ],
   [
-   137.0,
-   "I MAKE NO PROTEST"
+   102.2,
+   "",
+   0
   ],
   [
-   141.4,
-   "YOU WILL DO THE REST"
+   104.6,
+   "TOGETHER",
+   1
   ],
   [
-   145.8,
-   "LIFE IS PEACEFUL THERE"
+   106.1,
+   "WE WILL LOVE THE BEACH",
+   0
   ],
   [
-   150.4,
-   "IN THE OPEN AIR"
+   108.8,
+   "TOGETHER",
+   1
   ],
   [
-   154.6,
-   "BABY YOU AND ME"
+   110.5,
+   "WE WILL LEARN AND TEACH",
+   0
   ],
   [
-   158.1,
-   "THIS IS OUR DESTINY"
+   113.3,
+   "TOGETHER",
+   1
   ],
   [
-   163.6,
-   "SUN IN WINTERTIME"
+   115.1,
+   "CHANGE OUR PACE OF LIFE",
+   0
   ],
   [
-   167.7,
-   "WE WILL DO JUST FINE"
+   117.7,
+   "TOGETHER",
+   1
   ],
   [
-   172.1,
-   "WHERE THE SKIES ARE BLUE"
+   119.5,
+   "WE WILL WORK AND STRIVE",
+   0
+  ],
+  [
+   122.2,
+   "I LOVE YOU",
+   1
+  ],
+  [
+   123.9,
+   "I KNOW YOU LOVE ME",
+   0
+  ],
+  [
+   126.6,
+   "I WANT YOU",
+   1
+  ],
+  [
+   128.2,
+   "HOW COULD I DISAGREE?",
+   0
+  ],
+  [
+   130.8,
+   "SO THAT'S WHY",
+   1
+  ],
+  [
+   132.5,
+   "I MAKE NO PROTEST",
+   0
+  ],
+  [
+   135.1,
+   "WHEN YOU SAY",
+   1
+  ],
+  [
+   136.9,
+   "YOU WILL DO THE REST",
+   0
+  ],
+  [
+   139.2,
+   "GO WEST",
+   1
+  ],
+  [
+   141.3,
+   "LIFE IS PEACEFUL THERE",
+   0
+  ],
+  [
+   143.7,
+   "GO WEST",
+   1
+  ],
+  [
+   145.9,
+   "IN THE OPEN AIR",
+   0
+  ],
+  [
+   148.0,
+   "GO WEST",
+   1
+  ],
+  [
+   150.1,
+   "BABY YOU AND ME",
+   0
+  ],
+  [
+   152.3,
+   "GO WEST",
+   1
+  ],
+  [
+   153.6,
+   "THIS IS OUR DESTINY",
+   0
+  ],
+  [
+   156.9,
+   "GO WEST",
+   1
+  ],
+  [
+   159.1,
+   "SUN IN WINTERTIME",
+   0
+  ],
+  [
+   161.1,
+   "GO WEST",
+   1
+  ],
+  [
+   163.2,
+   "WE WILL DO JUST FINE",
+   0
+  ],
+  [
+   165.4,
+   "GO WEST",
+   1
+  ],
+  [
+   167.6,
+   "WHERE THE SKIES ARE BLUE",
+   0
+  ],
+  [
+   169.9,
+   "GO WEST",
+   1
+  ],
+  [
+   171.1,
+   "THIS IS WHAT WE'RE GONNA",
+   1
+  ],
+  [
+   172.4,
+   "DO",
+   1
+  ],
+  [
+   176.1,
+   "THERE WHERE THE AIR IS",
+   0
+  ],
+  [
+   177.4,
+   "FREE",
+   0
+  ],
+  [
+   178.8,
+   "WE'LL BE WE'LL BE",
+   0
   ],
   [
    180.6,
-   "THERE WHERE THE AIR IS"
+   "WHAT WE WANT TO BE",
+   0
   ],
   [
-   181.9,
-   "FREE"
+   184.6,
+   "NOW IF WE MAKE A STAND",
+   0
   ],
   [
-   183.2,
-   "WE'LL BE"
+   187.7,
+   "WE'LL FIND WE'LL FIND",
+   0
   ],
   [
-   185.1,
-   "WHAT WE WANT TO BE"
+   189.5,
+   "OUR PROMISED LAND",
+   0
   ],
   [
-   189.1,
-   "NOW IF WE MAKE A STAND"
+   192.5,
+   "I KNOW THAT",
+   1
   ],
   [
-   192.2,
-   "WE'LL FIND"
+   194.2,
+   "THERE ARE MANY WAYS",
+   0
   ],
   [
-   194.0,
-   "OUR PROMISED LAND"
+   196.7,
+   "TO LIVE THERE",
+   1
   ],
   [
-   198.7,
-   "THERE ARE MANY WAYS"
+   198.4,
+   "IN THE SUN OR SHADE",
+   0
+  ],
+  [
+   201.1,
+   "TOGETHER",
+   1
   ],
   [
    202.9,
-   "IN THE SUN OR SHADE"
+   "WE WILL FIND A PLACE",
+   0
   ],
   [
-   207.4,
-   "WE WILL FIND A PLACE"
+   204.6,
+   "TO SETTLE",
+   1
   ],
   [
-   210.9,
-   "WHERE THERE'S SO MUCH"
+   206.4,
+   "WHERE THERE'S SO MUCH",
+   0
   ],
   [
-   212.2,
-   "SPACE"
+   207.7,
+   "SPACE",
+   0
   ],
   [
-   215.3,
-   "AND THE PACE BACK EAST"
+   209.1,
+   "WITHOUT RUSH",
+   1
   ],
   [
-   219.8,
-   "RUSTLING JUST TO FEED"
+   210.8,
+   "AND THE PACE BACK EAST",
+   0
   ],
   [
-   224.0,
-   "READY TO LEAVE TOO"
+   213.4,
+   "THE HUSTLING",
+   1
   ],
   [
-   228.4,
-   "WE ARE GONNA DO"
+   215.2,
+   "RUSTLING JUST TO FEED",
+   0
   ],
   [
-   235.7,
-   "LIFE IS PEACEFUL THERE"
+   217.7,
+   "I KNOW I'M",
+   1
   ],
   [
-   239.6,
-   "THERE IN THE OPEN AIR"
+   219.5,
+   "READY TO LEAVE TOO",
+   0
   ],
   [
-   244.4,
-   "WHERE THE SKIES ARE BLUE"
+   222.2,
+   "SO THAT'S WHAT",
+   1
   ],
   [
-   248.4,
-   "THIS IS WHAT WE'RE GONNA"
+   223.9,
+   "WE ARE GONNA DO",
+   0
   ],
   [
-   249.7,
-   "DO"
+   227.3,
+   "WHAT WE'RE GONNA DO IS",
+   1
   ],
   [
-   252.8,
-   ""
+   228.8,
+   "GO WEST",
+   1
   ],
   [
-   255.2,
-   "GO WEST"
+   231.2,
+   "LIFE IS PEACEFUL THERE",
+   0
   ],
   [
-   257.5,
-   ""
+   233.4,
+   "GO WEST",
+   1
   ],
   [
-   259.4,
-   "GO WEST"
+   235.1,
+   "THERE IN THE OPEN AIR",
+   0
   ],
   [
-   261.8,
-   ""
+   238.1,
+   "GO WEST",
+   1
   ],
   [
-   263.7,
-   "GO WEST"
+   239.9,
+   "WHERE THE SKIES ARE BLUE",
+   0
   ],
   [
-   265.3,
-   ""
+   242.5,
+   "GO WEST",
+   1
   ],
   [
-   267.4,
-   "COME ON COME ON COME ON"
+   243.9,
+   "THIS IS WHAT WE'RE GONNA",
+   0
   ],
   [
-   268.7,
-   "COME ON"
+   245.2,
+   "DO",
+   0
   ],
   [
-   269.0,
-   ""
+   248.3,
+   "LIFE IS PEACEFUL THERE",
+   1
   ],
   [
-   270.3,
-   "SUN IN WINTERTIME"
+   250.7,
+   "GO WEST",
+   0
   ],
   [
-   272.7,
-   ""
+   253.0,
+   "IN THE OPEN AIR",
+   1
   ],
   [
-   274.8,
-   "WE WILL FEEL JUST FINE"
+   254.9,
+   "GO WEST",
+   0
   ],
   [
-   277.1,
-   ""
+   257.3,
+   "BABY YOU AND ME",
+   1
   ],
   [
-   279.1,
-   "WHERE THE SKIES ARE BLUE"
+   259.2,
+   "GO WEST",
+   0
   ],
   [
-   281.3,
-   ""
+   260.8,
+   "THIS IS OUR DESTINY",
+   1
   ],
   [
-   282.5,
-   "THIS IS WHAT WE'RE GONNA"
+   262.9,
+   "COME ON COME ON COME ON",
+   0
   ],
   [
-   283.8,
-   "DO"
+   263.9,
+   "GO WEST",
+   1
   ],
   [
-   287.3,
-   ""
+   265.8,
+   "SUN IN WINTERTIME",
+   0
+  ],
+  [
+   268.2,
+   "GO WEST",
+   1
+  ],
+  [
+   270.2,
+   "WE WILL FEEL JUST FINE",
+   0
+  ],
+  [
+   272.6,
+   "GO WEST",
+   1
+  ],
+  [
+   274.6,
+   "WHERE THE SKIES ARE BLUE",
+   0
+  ],
+  [
+   276.8,
+   "GO WEST",
+   1
+  ],
+  [
+   278.0,
+   "THIS IS WHAT WE'RE GONNA",
+   0
+  ],
+  [
+   279.3,
+   "DO",
+   0
+  ],
+  [
+   282.8,
+   "COME ON COME ON COME ON",
+   1
+  ],
+  [
+   284.8,
+   "GO WEST",
+   1
+  ],
+  [
+   287.8,
+   "",
+   0
   ]
  ]
 }

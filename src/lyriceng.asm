@@ -5,17 +5,19 @@
 //
 // Resident data (above the SID, $1000-$3005):
 //   FONT  $3100  64 glyphs x 8 = 512B
-//   UNIQ  $3300  LYRIC_NUNIQ x 24 screen codes (room to $37ff = 53 unique lines)
-//   ORDER $3800  LYRIC_NLINES bytes (unique-line index per onset)
-//   ONSET $3880  LYRIC_NLINES x 2 (LE PAL frame)
+//   UNIQ  $3300  LYRIC_NUNIQ x 24 screen codes (room to $3aff = 85 unique lines)
+//   ORDER $3b00  LYRIC_NLINES bytes (unique-line index per onset)
+//   ONSET $3c00  LYRIC_NLINES x 2 (LE PAL frame)
+//   STYLE $3e00  LYRIC_NLINES bytes (0=lead vocal, 1=choir -> 2nd colour ramp)
 //
 // Jump table: $0c00 lyric_play / $0c03 init / $0c06 blit_line / $0c09 setup_sprites
 
 .import source "lyric_n.asm"          // LYRIC_NLINES, LYRIC_NUNIQ
 .const FONT  = $3100
 .const UNIQ  = $3300
-.const ORDER = $3800
-.const ONSET = $3880
+.const ORDER = $3b00
+.const ONSET = $3c00
+.const STYLE = $3e00
 .const NLINES = LYRIC_NLINES
 .const SID_PLAY = $1003
 .const B1 = $4800
@@ -34,6 +36,7 @@
 .const DEST=$14       // $14/$15 dest ptr
 .const CCOL=$16
 .const TMP=$17
+.const FADEPTR=$18    // $18/$19 -> active colour ramp (faderamp or faderamp2)
 
 * = $0c00 "lyriceng"
         jmp lyric_play
@@ -98,6 +101,19 @@ ic:
 
 // render UNIQ[ORDER[CURSOR]] into bank1 block, copy to bank2
 blit_line:
+        // select this line's colour ramp: STYLE[CURSOR] 0=lead, 1=choir
+        ldx CURSOR
+        lda STYLE,x
+        bne bl_choir
+        lda #<faderamp
+        ldy #>faderamp
+        jmp bl_setf
+bl_choir:
+        lda #<faderamp2
+        ldy #>faderamp2
+bl_setf:
+        sta FADEPTR
+        sty FADEPTR+1
         ldx #0
         lda #0
 bl_clr:
@@ -213,8 +229,8 @@ an_yl:
         ldx ANIM
         lda sinetab,x
         lsr                    // 0..4
-        tax
-        lda faderamp,x
+        tay
+        lda (FADEPTR),y        // active ramp (lead or choir) for this line
         ldx #7
 an_cl:
         sta $d027,x

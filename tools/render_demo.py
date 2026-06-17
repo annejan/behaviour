@@ -19,6 +19,7 @@ PEPTO=[(0,0,0),(255,255,255),(136,57,57),(103,182,189),(139,79,171),(80,175,75),
 (64,64,173),(199,196,126),(139,95,41),(87,66,0),(191,116,116),(86,86,86),
 (128,128,128),(155,226,152),(124,124,219),(171,171,171)]
 FADERAMP=CLIP.get('faderamp',[0,6,11,4,12])  # per-clip pulse ramp (matches engine)
+FADERAMP2=CLIP.get('faderamp2',FADERAMP)     # choir / call-and-response ramp
 SPRX=[84,108,132,156,180,204,228,252]
 SINE=np.array([round(4+4*np.sin(i*2*np.pi/256)) for i in range(256)],dtype=np.int32)
 
@@ -39,6 +40,8 @@ uniq=open('out/lyric_uniq.bin','rb').read()
 order=open('out/lyric_order.bin','rb').read()
 on=open('out/lyric_onset.bin','rb').read()
 onset=[on[i]|(on[i+1]<<8) for i in range(0,len(on),2)]
+try: style=open('out/lyric_style.bin','rb').read()
+except FileNotFoundError: style=bytes(len(onset))
 NUNIQ=len(uniq)//24
 
 UPIX=[]
@@ -69,7 +72,8 @@ for f in range(NF):
     if len(S):
         anim=(f*3)&255
         lvl=int(SINE[anim])>>1
-        col=np.array(PEPTO[FADERAMP[lvl]],dtype=np.uint8)
+        ramp=FADERAMP2 if style[cursor] else FADERAMP
+        col=np.array(PEPTO[ramp[lvl]],dtype=np.uint8)
         spy=202+SINE[(anim+np.arange(8)*8)&255]-50+BORDER
         Y=spy[S]+7+R
         X=(SPRXA[S]-24)+BORDER+LX
