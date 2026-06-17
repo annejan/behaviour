@@ -12,6 +12,9 @@
   "render_len": 197.0,
   "ratio": 1.0,
   "faderamp": [0, 6, 14, 3, 1],
-  "abbr": {},
+  "abbr": {
+    "HE'S GOT HIS STRONG BELIEFS": "GOT HIS STRONG BELIEFS",
+    "NA NA NA NA NA NA NA NA": "NA NA NA NA NA NA"
+  },
   "build": null
 }

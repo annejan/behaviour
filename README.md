@@ -75,4 +75,13 @@ are in [`docs/LESSONS.md`](docs/LESSONS.md).
 - **Timing**: each part counts down its section length and raises an advance
   flag; the pefchain script waits on it, so cuts land on song transitions.
 
+## Related
+
+- **[Jantje](https://github.com/annejan/jantje)** — upstream: MIDI → SID / SNG / LRC.
+- **[vice-macos (mcp-server)](https://github.com/barryw/vice-macos/tree/mcp-server)** —
+  VICE MCP bridge, for capturing the real `.d64` running on the emulator
+  (`render_demo.py` is the deterministic offline preview; see `AGENTS.md` and
+  `docs/LESSONS.md`).
+- Agent / contributor guide: [`AGENTS.md`](AGENTS.md).
+
 🤖 Generated with [Claude Code](https://claude.com/claude-code)

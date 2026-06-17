@@ -16,11 +16,14 @@ for f in clip.json segments.json lyrics.json picks.json koala \
     [ -L "$f" ] && rm -f "$f"
 done
 
-# config + curated assets
+# config + curated assets. Always symlink the json (even if not generated yet)
+# so a fresh clip's segment.py / lrc_to_lyrics.py output writes *through* into
+# clips/<name>/ instead of stranding a real file at the (gitignored) root.
 for f in clip.json segments.json lyrics.json picks.json; do
-    [ -e "$dir/$f" ] && ln -sfn "$dir/$f" "$f"
+    ln -sfn "$dir/$f" "$f"
 done
-[ -e "$dir/koala" ] && ln -sfn "$dir/koala" koala
+mkdir -p "$dir/koala"
+ln -sfn "$dir/koala" koala
 
 # source media (sid/sng/lrc/mid/mp3/webm) — symlinked into root by basename
 shopt -s nullglob

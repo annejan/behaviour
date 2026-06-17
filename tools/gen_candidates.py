@@ -18,8 +18,11 @@ for s in segs:
     for k in range(K):
         t=vt0+(vt1-vt0)*k/(K-1)
         raw=f"/tmp/cr.png"
+        # crop to the largest 4:3 region that fits (robust to any source AR:
+        # 16:9 -> pillar, 5:4 -> letterbox), then scale to the C64 320x200.
         subprocess.run(["ffmpeg","-y","-ss",f"{t:.2f}","-i",VID,"-frames:v","1",
-            "-vf","crop=ih*4/3:ih,scale=320:200",raw],stderr=subprocess.DEVNULL,check=True)
+            "-vf",r"crop=min(iw\,ih*4/3):min(ih\,iw*3/4),scale=320:200",raw],
+            stderr=subprocess.DEVNULL,check=True)
         prev=f"cand/s{i:02d}_k{k}.png"
         subprocess.run(["python3","tools/photo_to_koala.py",raw,"/tmp/cr.kla",
             "--preview",prev,"--bg","0","--contrast","1.15","--sat","1.25"],

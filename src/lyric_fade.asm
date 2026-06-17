@@ -1,1 +1,1 @@
-faderamp: .byte 0,6,11,4,12
+faderamp: .byte 0,6,14,3,1
