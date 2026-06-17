@@ -1,0 +1,17 @@
+{
+  "name": "go_west",
+  "video": "Pet Shop Boys - Go West (Official Video) [HD REMASTERED] [LNBjMRvOB5M].webm",
+  "sid": "go_west.sid",
+  "mp3": "go_west.mp3",
+  "lrc": "go_west.lrc",
+  "title": "gowest/psb",
+  "disk_id": "GW",
+  "beat": 0.455,
+  "song_len": 260.0,
+  "video_len": 291.3,
+  "render_len": 260.0,
+  "ratio": 1.0,
+  "faderamp": [0, 2, 10, 7, 1],
+  "abbr": {},
+  "build": null
+}

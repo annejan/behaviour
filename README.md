@@ -25,6 +25,7 @@ repoints the root working symlinks at a clip and you build it. Three clips:
 | Whigfield — *Saturday Night* | `saturday_night.sid` (3:37) | [`clips/saturday/`](clips/saturday/) | done |
 | GALA — *Freed from Desire* | `freed-from-desire.sid` (~3:17) | [`clips/freed/`](clips/freed/) | done |
 | Ace of Base — *The Sign* | `the_sign.sid` (4:20) | [`clips/the_sign/`](clips/the_sign/) | done |
+| Pet Shop Boys — *Go West* | `go_west.sid` (4:20) | [`clips/go_west/`](clips/go_west/) | done |
 
 Renders land in `~/Videos/<name>_c64.mp4`; the disk image in `out/<name>.d64`.
 
