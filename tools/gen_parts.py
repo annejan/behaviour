@@ -252,8 +252,8 @@ def main():
     bl += [
         'echo ">>> linking with pefchain"',
         f'"$PEFCHAIN" -v --title "{CLIP["title"]}" --disk-id "{CLIP["disk_id"]}" --loop 0 '
-        '-o out/human.d64 script_demo',
-        'ls -l out/human.d64']
+        f'-o out/{CLIP["name"]}.d64 script_demo',
+        f'ls -l out/{CLIP["name"]}.d64']
     p = os.path.join(ROOT, 'build_demo.sh')
     open(p, 'w').write("\n".join(bl) + "\n")
     os.chmod(p, 0o755)

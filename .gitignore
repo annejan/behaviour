@@ -1,5 +1,6 @@
-# Copyrighted source video (42MB) — not redistributable
+# Copyrighted recordings — never committed (anywhere): source video + mastered audio
 *.webm
+*.mp3
 # Intermediate extracted frames (regenerable via tools/extract_segments.py)
 frames/
 # Build artifacts (regenerable via build_demo.sh)
@@ -11,9 +12,16 @@ parts_pef/
 out/
 __pycache__/
 cand/
-# Active-clip working symlinks (authoritative copies live in clips/<name>/)
+# Active-clip working symlinks at repo root (authoritative copies in clips/<name>/)
 /clip.json
 /segments.json
 /lyrics.json
 /picks.json
 /koala
+/*.sid
+/*.sng
+/*.lrc
+/*.mid
+# Generated per active clip (gen_parts.py rewrites these)
+/build_demo.sh
+/script_demo

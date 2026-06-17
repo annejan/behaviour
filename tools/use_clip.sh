@@ -1,16 +1,32 @@
 #!/bin/bash
 # Activate a clip: point the repo-root working files at clips/<name>/.
-# The config-driven tools (lrc_to_lyrics, segment, lyric_assets, gen_parts,
-# gen_candidates, render_demo) all read from the repo root, so switching clips
-# is just repointing these symlinks. Edits write through to clips/<name>/.
-#   tools/use_clip.sh bjork | saturday
+# Everything per-clip lives in clips/<name>/ (config + curated json + koala +
+# source media). The config-driven tools all read the repo root, so switching
+# clips just repoints these symlinks; edits write through to clips/<name>/.
+#   tools/use_clip.sh bjork | saturday | freed
 set -e
 cd "$(dirname "$0")/.."
 name="$1"
 dir="clips/$name"
-[ -d "$dir" ] || { echo "no such clip: $dir" >&2; ls clips/ >&2; exit 1; }
+[ -d "$dir" ] || { echo "no such clip: $dir" >&2; echo "available:" >&2; ls clips/ >&2; exit 1; }
+
+# clear stale root working symlinks (never touch real files)
+for f in clip.json segments.json lyrics.json picks.json koala \
+         *.sid *.sng *.lrc *.mid *.mp3 *.webm; do
+    [ -L "$f" ] && rm -f "$f"
+done
+
+# config + curated assets
 for f in clip.json segments.json lyrics.json picks.json; do
     [ -e "$dir/$f" ] && ln -sfn "$dir/$f" "$f"
 done
-ln -sfn "$dir/koala" koala
+[ -e "$dir/koala" ] && ln -sfn "$dir/koala" koala
+
+# source media (sid/sng/lrc/mid/mp3/webm) — symlinked into root by basename
+shopt -s nullglob
+for f in "$dir"/*.sid "$dir"/*.sng "$dir"/*.lrc "$dir"/*.mid "$dir"/*.mp3 "$dir"/*.webm; do
+    ln -sfn "$f" "$(basename "$f")"
+done
+shopt -u nullglob
+
 echo "active clip: $name  ($(python3 -c "import json;c=json.load(open('clip.json'));print(c['title'],c['name'])"))"

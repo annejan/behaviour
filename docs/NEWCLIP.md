@@ -1,15 +1,20 @@
 # Making a demo for another video clip (config-driven)
 
-The pipeline is driven by **`clip.json`** — a new clip = drop the inputs, edit
-`clip.json`, run the steps. Work on a branch per clip (master=Björk,
-`saturday`=Whigfield, …). All tools read `clip.json`; no tool edits needed.
+The pipeline is driven by **`clip.json`** — a new clip = make `clips/<name>/`,
+drop the inputs in it, write `clip.json`, activate with `tools/use_clip.sh
+<name>`, run the steps. All clips live side by side under `clips/`; all tools
+read the repo-root working symlinks that `use_clip.sh` repoints. No tool edits
+needed.
 
-## 1. Drop inputs in the repo root
+## 1. Make the clip dir + drop inputs
 
-- the music video (`.webm`/`.mp4`)
+`mkdir clips/<name>/` and put in it:
+- the music video (`.webm`/`.mp4`) — copyrighted, not committed
 - the SID (`*.sid`, PSID, init $1000 / play $1003)
-- a mastered MP3 of the SID render (loudnorm) — used as the render's audio
+- a mastered MP3 of the SID render (loudnorm) — render audio, not committed
 - a timed `.lrc`
+
+Then `tools/use_clip.sh <name>` to make it the active clip.
 
 ## 2. Fill in `clip.json`
 
@@ -44,7 +49,7 @@ python3 tools/gen_candidates.py            # 8 dithered koala candidates per slo
 python3 tools/lrc_to_lyrics.py             # LRC -> lyrics.json (abbr/build/gaps applied)
 python3 tools/lyric_assets.py              # font + uniq + order + onset + src/lyric_n.asm
 python3 tools/gen_parts.py                 # regenerates src/pNN*.asm + build_demo.sh + script_demo
-bash build_demo.sh                         # assembles parts + lyric engine -> out/human.d64
+bash build_demo.sh                         # assembles parts + lyric engine -> out/<name>.d64
 python3 tools/render_demo.py               # deterministic MP4 -> ~/Videos/<name>_c64.mp4
 ```
 

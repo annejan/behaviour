@@ -1,4 +1,7 @@
-# human — C64 music-video trackmo builder
+# Alfred — a director for C64 music-video demos
+
+> Named for Alfred Hitchcock: hand it a music video and it directs the whole
+> production onto a Commodore 64.
 
 A config-driven pipeline that turns a music video + a SID cover into a
 single-sided C64 demo (Spindle 3.1 / pefchain): the tune plays while koala
@@ -6,17 +9,21 @@ images — frames lifted from the video and dithered to the C64 palette — are
 streamed off disk and cut on the song's structural transitions, with a
 resident lyric engine blitting the words as hardware sprites.
 
-**Multi-clip.** Each clip lives in `clips/<name>/` (its `clip.json` + curated
-`segments.json` / `lyrics.json` / `koala/`). The tools all read the repo root,
-so `tools/use_clip.sh <name>` just repoints the root working symlinks at a
-clip and you build it. Two clips ship:
+(Companion to the Dutch-pun toolchain: **Martin Gaus** for the splatting,
+**Jantje Smit** for the SNG.)
 
-| clip | song | `clips/<name>/` |
-|------|------|-----------------|
-| Björk — *Human Behaviour* | `human_behaviour.sid` (4:19) | `clips/bjork/` |
-| Whigfield — *Saturday Night* | `saturday_night.sid` (3:37) | `clips/saturday/` |
+**Multi-clip.** Each clip lives in `clips/<name>/` — its `clip.json` + curated
+`segments.json` / `lyrics.json` / `koala/` + its source media, and its own
+README. The tools all read the repo root, so `tools/use_clip.sh <name>` just
+repoints the root working symlinks at a clip and you build it. Three clips:
 
-Renders land in `~/Videos/<name>_c64.mp4`; the disk image in `out/human.d64`.
+| clip | song | dir | status |
+|------|------|-----|--------|
+| Björk — *Human Behaviour* | `human_behaviour.sid` (4:19) | [`clips/bjork/`](clips/bjork/) | done |
+| Whigfield — *Saturday Night* | `saturday_night.sid` (3:37) | [`clips/saturday/`](clips/saturday/) | done |
+| GALA — *Freed from Desire* | `freed-from-desire.sid` (~3:17) | [`clips/freed/`](clips/freed/) | staged |
+
+Renders land in `~/Videos/<name>_c64.mp4`; the disk image in `out/<name>.d64`.
 
 ## Build a clip
 
@@ -45,7 +52,7 @@ are in [`docs/LESSONS.md`](docs/LESSONS.md).
 | `tools/` | the config-driven pipeline (see `tools/README.md`) |
 | `src/lyriceng.asm` | resident lyric engine ($0c00): font-render + ORDER lookup |
 | `src/pNN.asm` | generated Spindle parts (one per koala, double-buffered banks) |
-| `out/human.d64` | the built demo (artifact) |
+| `out/<name>.d64` | the built demo (artifact) |
 
 ## How it works
 
