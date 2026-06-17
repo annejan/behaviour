@@ -8,7 +8,8 @@ needed.
 
 ## 1. Make the clip dir + drop inputs
 
-`mkdir clips/<name>/` and put in it:
+The SID / SNG / LRC come from [Jantje](https://github.com/annejan/jantje),
+which generates them from a MIDI. `mkdir clips/<name>/` and put in it:
 - the music video (`.webm`/`.mp4`) — copyrighted, not committed
 - the SID (`*.sid`, PSID, init $1000 / play $1003)
 - a mastered MP3 of the SID render (loudnorm) — render audio, not committed

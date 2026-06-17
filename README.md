@@ -9,8 +9,10 @@ images — frames lifted from the video and dithered to the C64 palette — are
 streamed off disk and cut on the song's structural transitions, with a
 resident lyric engine blitting the words as hardware sprites.
 
-(Companion to the Dutch-pun toolchain: **Martin Gaus** for the splatting,
-**Jantje Smit** for the SNG.)
+Companion to the Dutch-pun toolchain: **Martin Gaus** for the splatting, and
+**[Jantje](https://github.com/annejan/jantje)** (Jantje Smit) which makes the
+upstream inputs — `.sid` / `.sng` / (where possible) `.lrc` — from a MIDI. So
+the chain is: MIDI → *Jantje* → SID/SNG/LRC → *Alfred* → C64 demo.
 
 **Multi-clip.** Each clip lives in `clips/<name>/` — its `clip.json` + curated
 `segments.json` / `lyrics.json` / `koala/` + its source media, and its own
